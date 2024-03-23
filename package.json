@@ -1,0 +1,16 @@
+{
+  "name": "rp-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.12.30",
+    "cypress": "^13.7.1",
+    "cypress-mochawesome-reporter": "^3.8.2"
+  }
+}

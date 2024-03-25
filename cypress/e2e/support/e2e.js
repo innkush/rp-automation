@@ -14,7 +14,24 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands'; 
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+beforeEach(() => {
+  console.log("Before Each Hook Executing");
+  const { username, password } = Cypress.config('auth');
+  const url = Cypress.env("_env");
+  cy.loginRP(username, password, url);
+});
+before(() => {
+  // runs once before all tests in the block
+})
+
+afterEach(() => {
+  // runs after each test in the block
+})
+
+after(() => {
+  // runs once after all tests in the block
+})
+
+

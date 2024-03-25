@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("loginRP", (username, password, url) => {
+  cy.visit(url, {timeout: 4000});
+  cy.get(`input[placeholder='Login']`).type(username);
+  cy.get(`input[placeholder='Password']`).type(password);
+  cy.get(`[type='submit']`).click();
+  cy.get(`div[class*='sidebar__top-block']`, { timeout: 4000 }).should('be.visible');
+});
+
+export {};

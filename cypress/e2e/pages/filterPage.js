@@ -1,4 +1,4 @@
-class HomePage {
+class FilterPage {
   locators = {
     filterButton: "#filter",
   };
@@ -8,4 +8,4 @@ class HomePage {
   }
 }
 
-export const HomePage = new HomePage();
+export default new FilterPage();

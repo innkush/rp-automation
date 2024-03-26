@@ -1,4 +1,4 @@
-class FilterPage {
+class HomePage {
     locators = {
       addFilter: "#filter",
     };
@@ -8,5 +8,5 @@ class FilterPage {
     }
   }
   
-  export const FilterPage = new FilterPage();
+  export default HomePage();
   

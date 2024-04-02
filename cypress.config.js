@@ -13,9 +13,8 @@ module.exports = defineConfig({
     embeddedScreenshots: true,
     debug: true,
   },
-
+  baseUrl: 'http://127.0.0.1:8080/ui/#/',
   env: {
-    baseUrl: 'http://127.0.0.1:8080',
     coverage: false,
   },
   screenshotOnRunFailure: true,
@@ -39,6 +38,7 @@ module.exports = defineConfig({
 
         if (browser.name === 'chrome') {
           // https://www.ghacks.net/2013/10/06/list-useful-google-chrome-command-line-switches/
+
           launchOptions.args.push('--window-size=1920,1080')
 
           console.log('chrome launch args:')
@@ -46,6 +46,13 @@ module.exports = defineConfig({
           return launchOptions
         }
       })
+
+      on('task', {
+        log(message) {
+          console.log(message);
+          return null;
+        },
+      });
       return config
     }
   }

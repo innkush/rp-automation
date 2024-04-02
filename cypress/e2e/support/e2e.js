@@ -6,8 +6,9 @@ beforeEach(() => {
   console.log("Before Each Hook Executing");
   const { username, password } = Cypress.config('auth');
   const baseUrl = Cypress.env('baseUrl')
+
   if (baseUrl) {
-    cy.visit(baseUrl, { timeout: 4000 });
+    cy.visit(baseUrl, { timeout: 10000 });
     cy.loginRP(username, password);
   } else {
     throw new Error("URL is not defined");

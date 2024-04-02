@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose -p reportportal up
+        run: docker-compose -p reportportal up -d
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies

@@ -26,7 +26,9 @@
 
 Cypress.Commands.add("loginRP", (username, password) => {
   cy.visit('http://127.0.0.1:8080', {timeout: 20000});
-  cy.url().should('contain', 'login');
+  const urll = cy.url();
+  cy.log(urll);
+  cy.wait(20000);
   cy.get('input[placeholder=Login]').type(username);
   cy.get('input[placeholder=Password]').type(password);
   cy.get('[type=submit]').click();

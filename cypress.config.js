@@ -13,7 +13,6 @@ module.exports = defineConfig({
     embeddedScreenshots: true,
     debug: true,
   },
-  baseUrl: 'http://127.0.0.1:8080/ui/#/',
   env: {
     coverage: false,
   },
@@ -26,6 +25,7 @@ module.exports = defineConfig({
   }, 
 
   e2e: {
+    baseUrl: 'http://127.0.0.1:8080/ui/#/',
     specPattern: 'cypress/e2e/**/*.cy.js',
     supportFile: 'cypress/e2e/support/e2e.js',
     setupNodeEvents(on, config) {

@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose -p reportportal up -d
+        run: docker-compose -p reportportal up -d --build
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies
@@ -17,4 +17,3 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          

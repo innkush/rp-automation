@@ -25,7 +25,15 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("loginRP", (username, password) => {
+  cy.url().then(url => {
+    const getUrl = url
+    cy.task('log','Current URL is : '+getUrl)
+});
   cy.visit('http://127.0.0.1:8080/ui/#login', {timeout: 20000});
+  cy.url().then(url => {
+    const getUrl = url
+    cy.task('log','Current URL is 2 : '+getUrl)
+});
   cy.get('input[placeholder=Login]').type(username);
   cy.get('input[placeholder=Password]').type(password);
   cy.get('[type=submit]').click();

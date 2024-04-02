@@ -13,7 +13,9 @@ module.exports = defineConfig({
     embeddedScreenshots: true,
     debug: true,
   },
+
   env: {
+    baseUrl: 'http://127.0.0.1:8080',
     coverage: false,
   },
   screenshotOnRunFailure: true,
@@ -25,7 +27,6 @@ module.exports = defineConfig({
   }, 
 
   e2e: {
-    baseUrl: 'http://127.0.0.1:8080/ui/#/',
     specPattern: 'cypress/e2e/**/*.cy.js',
     supportFile: 'cypress/e2e/support/e2e.js',
     setupNodeEvents(on, config) {
@@ -47,7 +48,7 @@ module.exports = defineConfig({
         }
       })
 
-      on('task', {
+       on('task', {
         log(message) {
           console.log(message);
           return null;

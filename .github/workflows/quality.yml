@@ -8,7 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose -p reportportal up -d --build
+        run: docker-compose -p reportportal up -d
+      - name: docker run
+        run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies

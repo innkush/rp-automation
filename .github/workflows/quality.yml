@@ -8,13 +8,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose -p reportportal up -d
+        run: docker-compose -p reportportal up
+        parallel: true
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies
         run: npm install --package-lock-only
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        parallel: true
         with:
           browser: chrome
           headed: true

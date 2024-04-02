@@ -4,7 +4,7 @@ services:
     container_name: webapp-frontend
     build: .
     ports:
-      - "8080:8080"
+      - "8080"
   redis:
     container_name: redis-backend
     image: "redis:alpine"

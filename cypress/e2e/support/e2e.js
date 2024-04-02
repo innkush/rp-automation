@@ -8,7 +8,6 @@ beforeEach(() => {
   const baseUrl = Cypress.env('baseUrl')
 
   if (baseUrl) {
-    cy.visit('http://127.0.0.1:8080');
     cy.loginRP(username, password);
   } else {
     throw new Error("URL is not defined");

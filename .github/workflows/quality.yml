@@ -17,4 +17,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
+          headed: true
+          summary-title: 'Headed'
+          wait-on: "http://localhost:8080"
           config: pageLoadTimeout=100000,baseUrl=http://localhost:8080

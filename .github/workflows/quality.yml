@@ -17,5 +17,4 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          wait-on: "http://localhost:8080"
-          start: npx vite --host
+          

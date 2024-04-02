@@ -5,21 +5,9 @@ jobs:
   test:
     name: Cypress run
     runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2]
     steps:
-      - name: Use Node.js
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm install
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        with:
-          record: true
-          parallel: true
-          group: 'test parallel run'
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

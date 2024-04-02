@@ -2,38 +2,24 @@ name: Main Workflow
 on:
   workflow_dispatch
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  test:
+    name: Cypress run
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2]
     steps:
       - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-         node-version: '20.x'
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: npm install
-
-      - name: Build project
-        run: npm run build
-
-      - name: Run tests
-        run: npm test
-
-      - name: Check code quality
-        run: npm run lint --if-present
-
-      - name: Set build status
-        if: always()
-        uses: octokit/request-action@v2.x
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
-          route: POST /repos/innkush/rp-automation/statuses/${{ github.sha }}
-          owner: octokit
-          repo: request-action
-          check_run_id: ${{ fromJson(steps.create_check_run.outputs.data).id }}
-          conclusion: "success"
-          status: "completed"
+          record: true
+          parallel: true
+          group: 'test parallel run'
         env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

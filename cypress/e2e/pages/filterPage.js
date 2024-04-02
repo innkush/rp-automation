@@ -1,10 +1,10 @@
 class FilterPage {
   locators = {
-    filterButton: "#filter",
+    button: `[type="button"]`,
   };
 
-  clickOnFilter() {
-    cy.get(this.locators.filterButton).click();
+  clickOn(selectorName) {
+    cy.get(button).contains(selectorName).click();
   }
 }
 

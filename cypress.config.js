@@ -9,8 +9,10 @@ module.exports = defineConfig({
     embeddedScreenshots: true,
     debug: true,
   },
+
   env: {
-    coverage: false
+    baseUrl: 'http://127.0.0.1:8080',
+    coverage: false,
   },
   screenshotOnRunFailure: true,
   screenshotsFolder: 'cypress/screenshots',

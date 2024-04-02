@@ -42,7 +42,7 @@ module.exports = defineConfig({
           launchOptions.args.push('--window-size=1920,1080')
 
           console.log('chrome launch args:')
-          console.log(launchOptions.args.join(os.EOL))
+
           return launchOptions
         }
       })

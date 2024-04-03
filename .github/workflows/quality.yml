@@ -6,11 +6,10 @@ jobs:
     name: Cypress run
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Build the stack
-        run: docker-compose -p reportportal up -d
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Build the stack
+        run: docker-compose -p reportportal up -d
       - name: Install dependencies
         run: npm install --package-lock-only
       - name: Cypress run

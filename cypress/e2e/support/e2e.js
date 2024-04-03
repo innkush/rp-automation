@@ -9,6 +9,7 @@ beforeEach(() => {
 
   if (baseUrl) {
     cy.visit(baseUrl, '/login', {timeout: 20000});
+    cy.reload();
     cy.loginRP(username, password);
   } else {
     throw new Error("URL is not defined");

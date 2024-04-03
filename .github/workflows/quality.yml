@@ -9,8 +9,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose -p reportportal up -d
-      - name: docker run
-        run: docker run -connrefused http://localhost:8080/
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies

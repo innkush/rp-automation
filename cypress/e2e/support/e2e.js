@@ -5,10 +5,10 @@ const { exec } = require('child_process');
 beforeEach(() => {
   console.log("Before Each Hook Executing");
   const { username, password } = Cypress.config('auth');
-  const baseUrl = Cypress.env('baseUrl')
+  const baseUrl = Cypress.env('baseUrl');
 
   if (baseUrl) {
-    cy.visit(baseUrl, {timeout: 20000});
+    cy.visit(baseUrl, '/login', {timeout: 20000});
     cy.loginRP(username, password);
   } else {
     throw new Error("URL is not defined");

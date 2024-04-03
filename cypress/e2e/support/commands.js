@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("loginRP", (username, password) => {
-  cy.visit('/login');
+
   cy.url().then(url => {
     const getUrl = url
     cy.task('log','Current URL is : '+getUrl)

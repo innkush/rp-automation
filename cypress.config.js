@@ -33,7 +33,13 @@ module.exports = defineConfig({
       require('cypress-mochawesome-reporter/plugin')(on);
       require('@cypress/code-coverage/task')(on, config);
       require('@cypress/grep/src/plugin')(config);
-      return config
+      on('task', {
+        log(message) {
+          console.log(message);
+          return null; 
+        },
+      });
+      return config;
     }
   }
 });

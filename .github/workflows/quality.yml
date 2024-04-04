@@ -1,24 +1,26 @@
 name: Main Workflow
-on: workflow_dispatch
+pull_request:
+    types: [opened, reopened]
 jobs:
   test:
     name: Cypress run
     runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2]
     steps:
-      - name: Use Node.js
+      - name: Checkout
         uses: actions/checkout@v4
+      - name: Compose
+        uses: hoverkraft-tech/compose-action@v1.5.1
+        with:
+          compose-file: "./docker-compose.yml"
+      - name: Sleep
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '60s'
+      - name: Check running containers
+        run: docker ps -a
       - name: Install dependencies
-        run: npm install
+        run: npm install --package-lock-only
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          record: true
-          parallel: true
-          group: 'test parallel run'
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          browser: chrome

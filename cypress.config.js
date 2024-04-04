@@ -38,7 +38,6 @@ module.exports = defineConfig({
         console.log(browser)
 
         if (browser.name === 'chrome') {
-          // https://www.ghacks.net/2013/10/06/list-useful-google-chrome-command-line-switches/
 
           launchOptions.args.push('--window-size=1920,1080')
 

@@ -16,15 +16,6 @@ beforeEach(() => {
   }
 });
 before(() => {
-  // const path = 'gnome-terminal -- bash -c "cd reportportal && docker-compose up"';
- 
-  // exec(path, (error) => {
-  //   if (error) {
-  //     console.log(`${error.message}`);
-  //     done(error);
-  //   }
-  //   done();
-  // });
 });
 
 afterEach(() => {});

@@ -12,6 +12,10 @@ jobs:
         uses: hoverkraft-tech/compose-action@v1.5.1
         with:
           compose-file: "./docker-compose.yml"
+      - name: Sleep
+        uses: jakejarvis/wait-action@master
+        with:
+        time: '60s'
       - name: Check running containers
         run: docker ps -a
       - name: Install dependencies

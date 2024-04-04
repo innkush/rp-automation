@@ -1,6 +1,6 @@
 name: Main Workflow
-on:
-  workflow_dispatch
+pull_request:
+    types: [opened, reopened]
 jobs:
   test:
     name: Cypress run

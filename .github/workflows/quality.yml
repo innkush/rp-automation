@@ -8,8 +8,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Start containers
-        run: docker-compose -f "docker-compose.yml" up -d --build
+      - name: Compose
+        uses: hoverkraft-tech/compose-action@v1.5.1
+        with:
+          compose-file: "./docker-compose.yml"
+      - name: Sleep
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '60s'
       - name: Check running containers
         run: docker ps -a
       - name: Install dependencies

@@ -1,9 +1,9 @@
 import "./commands";
-require("dotenv").config();
 
 beforeEach(() => {
   console.log("Before Each Hook Executing");
-  const { username, password } = Cypress.config('auth');
+  const username = Cypress.env("username");
+  const password = Cypress.env("password");
   const baseUrl = Cypress.env('baseUrl');
   if (baseUrl) {
     cy.visit(baseUrl, '/login', {timeout: 20000});
@@ -23,5 +23,4 @@ before(() => {
 afterEach(() => {});
 
 after(() => {
-  
 });

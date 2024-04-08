@@ -21,11 +21,6 @@ module.exports = defineConfig({
   screenshotOnRunFailure: true,
   screenshotsFolder: 'cypress/screenshots',
 
-  auth: {
-    username: 'superadmin',
-    password: 'erebus',
-  }, 
-
   e2e: {
     specPattern: 'cypress/e2e/**/*.cy.js',
     supportFile: 'cypress/e2e/support/e2e.js',

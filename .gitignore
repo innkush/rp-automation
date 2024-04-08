@@ -6,3 +6,4 @@ screenshots
 videos
 coverage/**/*
 reports/
+cypress.env.json

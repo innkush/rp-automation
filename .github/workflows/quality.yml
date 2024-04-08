@@ -25,3 +25,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
+        env:
+          username: ${{ secrets.RP_USERNAME }}
+          password: ${{ secrets.RP_PASSWORD }}

@@ -5,7 +5,7 @@ module.exports = defineConfig({
   pageLoadTimeout: 60000,
   viewportWidth: 1280,
   viewportHeight: 720,
-  projectId: '1i9eio',
+  projectId: "m6prnv",
   reporter: 'cypress-mochawesome-reporter',
   video: true,
   reporterOptions: {

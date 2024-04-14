@@ -1,13 +1,20 @@
-
-/* eslint-env node, mocha */
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-  }
+  root: true,
+  files: ["cypress/e2e/spec/*.js"],
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
+    mocha: true,
+    cypress: true,
+  },
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: "module",
+  },
+  plugins: ['import'],
+  rules: {
+    'import/no-unresolved': 'error',
+    "no-unused-vars": "error",
+  },
+};

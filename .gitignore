@@ -7,3 +7,4 @@ videos
 coverage/**/*
 reports/
 cypress.env.json
+mochawesome-report/**/*

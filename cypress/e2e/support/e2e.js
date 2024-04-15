@@ -2,8 +2,8 @@ import "./commands";
 
 beforeEach(() => {
   console.log("Before Each Hook Executing");
-  const username = Cypress.env("username");
-  const password = Cypress.env("password");
+  const username = Cypress.env('RP_USERNAME');
+  const password = Cypress.env('RP_PASSWORD');
   const baseUrl = Cypress.env('baseUrl');
   if (baseUrl) {
     cy.visit(baseUrl, '/login', {timeout: 20000});

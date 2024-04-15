@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: [1,2]
+        containers: [1, 2]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
       - name: Sleep
         uses: jakejarvis/wait-action@master
         with:
-          time: '60s'
+          time: "60s"
       - name: Check running containers
         run: docker ps -a
       - name: Install dependencies
@@ -29,9 +29,9 @@ jobs:
           browser: chrome
           record: true
           parallel: true
-          group: 'report portal'
+          group: "report portal"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          username: ${{ secrets.RP_USERNAME }}
-          password: ${{ secrets.RP_PASSWORD }}
+          RP_USERNAME: ${{ secrets.RP_USERNAME }}
+          RP_PASSWORD: ${{ secrets.RP_PASSWORD }}

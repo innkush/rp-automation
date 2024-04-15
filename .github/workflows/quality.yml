@@ -31,7 +31,7 @@ jobs:
           parallel: true
           group: 'report portal'
         env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           username: ${{ secrets.RP_USERNAME }}
           password: ${{ secrets.RP_PASSWORD }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}cy.contains('a','Home').should('have.attr', 'href', '/home')

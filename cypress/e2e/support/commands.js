@@ -1,4 +1,3 @@
-
 Cypress.Commands.add("loginRP", (username, password) => {
   cy.get('input[placeholder=Login]').type(username);
   cy.get('input[placeholder=Password]').type(password);

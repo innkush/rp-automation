@@ -7,11 +7,11 @@ module.exports = defineConfig({
   viewportHeight: 720,
   projectId: "m6prnv",
   reporter: 'cypress-mochawesome-reporter',
-  video: true,
   reporterOptions: {
     charts: true,
     embeddedScreenshots: true,
     debug: true,
+    videoOnFailOnly: true,
   },
 
   env: {

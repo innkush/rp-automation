@@ -1,9 +1,9 @@
-import AbstractPage from "./abstractPage";
+import AbstractPage from './abstractPage';
 
 class HomePage extends AbstractPage {
-    static buttons = {
-      SIDE_BAR_FILTER: 'a[href*="/filters"]',  
-    };
-  }
+  static buttons = {
+    SIDE_BAR_FILTER: 'a[href*="/filters"]',  
+  };
+}
   
-  export default HomePage;
+export default HomePage;

@@ -1,5 +1,5 @@
-import HomePage from "./homePage";
-import FilterPage from "./homePage";
+import HomePage from './homePage';
+import FilterPage from './filterPage';
 
 const pages = {
   HomePage: HomePage,
@@ -10,8 +10,7 @@ class CommonPage {
   static buttons;
 
   static clickOnButton(page, element) {
-    console.log("buttons:", page.buttons);
-    return pages[page].clickOnButton(element);
+    pages[page].clickOnButton(element);
   }
 
 }

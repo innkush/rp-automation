@@ -12,6 +12,7 @@ Feature: Delete Filter
         When user clicks on side bar filter button
         Then user sees all active filters:
             | Filter name          | Options                                                           | Owner            | Display on launches    |
+            | DEMO_FILTER          | (Launch name contains demo api) sorted by: Start time             | Owner:superadmin | Display on launches:ON |
             | New Filter To Delete | (Launch name contains New Filter To Delete) sorted by: Start time | Owner:superadmin | Display on launches:ON |
         And user sets value 'New Filter To Delete' into 'Search by name' input field
         Then user verifies filter 'New Filter To Delete' is visible

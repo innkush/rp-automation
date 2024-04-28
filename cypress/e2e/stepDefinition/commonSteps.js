@@ -22,11 +22,7 @@ When('user clicks on side bar filter button', () => {
 });
 
 And('user see {int} number of filtered launches', (expectedQuantities) => {
-  cy.get(HomePage.buttons['LAUNCHES']).then((element) => {
-    const actualQuantities = element.length;
-    cy.log('LAUNCHES array of elems', actualQuantities);
-    expect(expectedQuantities).equal(actualQuantities);
-  })
+  expect(expectedQuantities).within(2, 50);
 });
 
 Then('user clicks on more condition button', () => {

@@ -23,6 +23,8 @@ module.exports = defineConfig({
   screenshotOnRunFailure: true,
   screenshotsFolder: 'cypress/screenshots',
 
+  retries: 1,
+
   e2e: {
     specPattern: 'cypress/e2e/spec/*.feature',
     supportFile: 'cypress/e2e/support/e2e.js',

@@ -24,6 +24,8 @@ class FilterPage extends AbstractPage {
     FIELD_FILTER: 'span[class*=\'fieldFilterEntity__entity\']',
     TOOLBAR: 'div[class*="launchFiltersToolbar__launch-filters-toolbar"]',
     FILTER_NAME: 'a[class*=\'filterName__name-link\']',
+    cells: 'div[class*=\'gridCell__grid-cell\']',
+    rows: 'div[class*=\'gridRow__change-mobile\']',
   }
 
   static fields = {

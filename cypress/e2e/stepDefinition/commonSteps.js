@@ -22,9 +22,11 @@ When('user clicks on side bar filter button', () => {
 });
 
 And('user see {int} number of filtered launches', (expectedQuantities) => {
-  const element = cy.get(HomePage.buttons['LAUNCHES']);
-  const actualQuantities = element.length;
-  expect(expectedQuantities).equal(actualQuantities);
+  cy.get(HomePage.buttons['LAUNCHES']).then((element) => {
+    const actualQuantities = element.length;
+    cy.log('LAUNCHES array of elems', actualQuantities);
+    expect(expectedQuantities).equal(actualQuantities);
+  })
 });
 
 Then('user clicks on more condition button', () => {
@@ -51,10 +53,11 @@ And(
     const element = FilterPage.fields.INPUT(field);
     if (field === 'Enter filter name') {
       const number = Math.floor(Math.random() * 1000);
-      textInput = textInput + number;
+      textInput = textInput + ' ' + number;
     }
 
     cy.get(element).should('be.visible').clear().type(textInput);
+    cy.wait(5000);
   }
 );
 
@@ -94,4 +97,26 @@ And('user scrolls into view of {string}', (label) => {
 
 Then('user verifies confirmation message is visible', () => {
   cy.get(FilterPage.messages['MODAL_MESSAGE']).should('be.visible');
+});
+
+
+Then('user sees all active filters:', dataTable => {
+  const expectedFilters = dataTable.hashes();
+
+  expectedFilters.forEach((filter, index) => {
+    cy.get(`${FilterPage.labels['rows']}:nth-child(${index + 1})`).then($row => {
+      cy.wrap($row).find(FilterPage.labels['cells']).eq(0).invoke('text').then(text => {
+        expect(text.trim()).to.include(filter['Filter name']);
+      });
+      cy.wrap($row).find(FilterPage.labels['cells']).eq(1).invoke('text').then(text => {
+        expect(text.trim()).to.equal(filter['Options']);
+      });
+      cy.wrap($row).find(FilterPage.labels['cells']).eq(2).invoke('text').then(text => {
+        expect(text.trim()).to.equal(filter['Owner']);
+      });
+      cy.wrap($row).find(FilterPage.labels['cells']).eq(3).invoke('text').then(text => {
+        expect(text.trim()).to.equal(filter['Display on launches']);
+      });
+    });
+  });
 });

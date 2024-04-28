@@ -5,17 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run --browser chrome",
-    "cypress open": "set CYPRESS_headed=true && cypress open --debug"
+    "cypress open": "set CYPRESS_headed=true && cypress open",
+    "test:awesome": "mocha --reporter mochawesome"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@cypress/code-coverage": "^3.12.30",
     "@cypress/grep": "^4.0.1",
+    "@stylistic/eslint-plugin-js": "^1.7.2",
     "cypress": "^13.7.1",
     "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-xpath": "^2.0.1",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
+    "eslint-gitignore": "^0.1.0",
+    "eslint-plugin-import": "^2.29.1",
     "mocha": "^10.3.0"
   }
 }

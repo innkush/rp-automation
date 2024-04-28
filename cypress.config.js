@@ -1,17 +1,17 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   defaultCommandTimeout: 12000,
   pageLoadTimeout: 60000,
   viewportWidth: 1280,
   viewportHeight: 720,
-  projectId: '1i9eio',
+  projectId: 'm6prnv',
   reporter: 'cypress-mochawesome-reporter',
-  video: true,
   reporterOptions: {
     charts: true,
     embeddedScreenshots: true,
     debug: true,
+    videoOnFailOnly: true,
   },
 
   env: {

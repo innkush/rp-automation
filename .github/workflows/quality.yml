@@ -1,14 +1,15 @@
 name: Main Workflow
-on: workflow_dispatch
+on:
+  pull_request:
+    types: [opened, reopened]
 jobs:
   test:
     name: Cypress run
     runs-on: ubuntu-22.04
-    container: cypress/browsers:node18.12.0-chrome107
     strategy:
       fail-fast: false
       matrix:
-        containers: [1,2]
+        containers: [1, 2]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,7 +20,7 @@ jobs:
       - name: Sleep
         uses: jakejarvis/wait-action@master
         with:
-          time: '60s'
+          time: "60s"
       - name: Check running containers
         run: docker ps -a
       - name: Install dependencies
@@ -30,9 +31,9 @@ jobs:
           browser: chrome
           record: true
           parallel: true
-          group: 'report portal'
+          group: "report portal"
         env:
-          username: ${{ secrets.RP_USERNAME }}
-          password: ${{ secrets.RP_PASSWORD }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}cy.contains('a','Home').should('have.attr', 'href', '/home')
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_RP_USERNAME: ${{ secrets.CYPRESS_RP_USERNAME }}
+          CYPRESS_RP_PASSWORD: ${{ secrets.CYPRESS_RP_PASSWORD }}

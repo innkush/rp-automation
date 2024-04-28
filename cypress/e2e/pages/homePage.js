@@ -1,11 +1,9 @@
-class HomePage {
-    locators = {
-      addFilter: "#filter",
-    };
+import AbstractPage from './abstractPage';
+
+class HomePage extends AbstractPage {
+  static buttons = {
+    SIDE_BAR_FILTER: 'a[href*="/filters"]',  
+  };
+}
   
-    clickOnAddFilter() {
-      cy.get(this.locators.addFilter).click();
-    }
-  }
-  
-  export default HomePage();
+export default HomePage;

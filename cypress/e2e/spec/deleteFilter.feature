@@ -18,4 +18,3 @@ Feature: Delete Filter
         And user clicks on 'DELETE' button
         And user verifies confirmation message is visible
         But user deletes new filter
-    

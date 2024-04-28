@@ -1,4 +1,6 @@
 const { defineConfig } = require('cypress');
+const cucumber = require('cypress-cucumber-preprocessor').default;
+const browserify = require('@cypress/browserify-preprocessor');
 
 module.exports = defineConfig({
   defaultCommandTimeout: 12000,
@@ -21,10 +23,24 @@ module.exports = defineConfig({
   screenshotOnRunFailure: true,
   screenshotsFolder: 'cypress/screenshots',
 
+  retries: 1,
+
   e2e: {
-    specPattern: 'cypress/e2e/**/*.cy.js',
+    specPattern: 'cypress/e2e/spec/*.feature',
     supportFile: 'cypress/e2e/support/e2e.js',
     setupNodeEvents(on, config) {
+
+      const options = {
+        ...browserify.defaultOptions,
+        browserifyOptions: {
+          ...browserify.defaultOptions.browserifyOptions,
+          extensions: ['.js']
+        },
+      };
+    
+      on('file:preprocessor', cucumber(options));
+   
+  
       require('cypress-mochawesome-reporter/plugin')(on);
       require('@cypress/code-coverage/task')(on, config);
       require('@cypress/grep/src/plugin')(config);

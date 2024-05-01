@@ -1,42 +1,46 @@
-import { Then, And, When } from 'cypress-cucumber-preprocessor/steps';
+import { Then, And, When, Given } from 'cypress-cucumber-preprocessor/steps';
 import FilterPage from '../pages/filterPage';
 import HomePage from '../pages/homePage';
 
-Then('user verifies {string} link contains {string} text', (link, text) => {
+Then('I see the {string} link contains the {string} text', (link, text) => {
   cy.get('footer').scrollIntoView();
   cy.get(FilterPage.links[link]).contains(text);
 });
 
-Then('user verifies demo data {string} is visible', (text) => {
+Given('I am on the Home page', () => {
+  cy.url().should('include', '/dashboard')
+});
+
+Then('I see demo data {string} is in the launches list', (text) => {
   cy.get(FilterPage.links['DEMO_DATA']).contains(text);
 });
 
-When('user clicks on {string} button', (button) => {
+When('I click on the {string} button', (button) => {
   const element = cy.get(FilterPage.buttons[button]);
   element.click();
 });
 
-When('user clicks on side bar filter button', () => {
+When('I click on the sidebar filter button', () => {
   const element = cy.get(HomePage.buttons['SIDE_BAR_FILTER']);
   element.click();
 });
 
-And('user see {int} number of filtered launches', (expectedQuantities) => {
+And('I see {int} number of filtered launches', (expectedQuantities) => {
   expect(expectedQuantities).within(2, 50);
 });
 
-Then('user clicks on more condition button', () => {
+Then('I click on the more condition button', () => {
   const element = cy.get(FilterPage.buttons['MORE']).contains('More');
   element.click();
 });
 
-And('user selects {string} condition', (condition) => {
+And('I select {string} condition from the dropdown menu', (condition) => {
   const element = cy.get(FilterPage.buttons['MORE']).contains(condition);
   element.click();
 });
 
 Then(
-  'user verifies filter label {string} has a value {string}',
+  'I see filter label {string} has a value {string}',
   (label, text) => {
     const element = cy.get(FilterPage.labels[label]).contains(text);
     element.should('be.visible');
@@ -44,7 +48,7 @@ Then(
 );
 
 And(
-  'user sets value {string} into {string} input field',
+  'I enter {string} into the {string} input field',
   (textInput, field) => {
     const element = FilterPage.fields.INPUT(field);
     if (field === 'Enter filter name') {
@@ -58,16 +62,16 @@ And(
 );
 
 
-And(/user (adds|deletes) new filter/, (action) => {
+And(/I confirm the (adding|deletion) of a filter/, (action) => {
   const button = FilterPage.buttons.BIG_BUTTON;
   let element;
   switch (action) {
-  case 'adds':
+  case 'adding':
     {
       element = cy.get(button).contains('Add');
     }
     break;
-  case 'deletes':
+  case 'deletion':
     {
       element = cy.get(button).contains('Delete');
     }
@@ -80,23 +84,29 @@ And(/user (adds|deletes) new filter/, (action) => {
   element.click();
 });
 
-Then('user verifies filter {string} is visible', (filterName) => {
+Then('I see the filter {string} appears in the filter list', (filterName) => {
   const filter = FilterPage.labels.FILTER_NAME;
   const element = cy.get(filter).contains(filterName);
   element.should('be.visible');
   cy.wait(2000);
 });
 
-And('user scrolls into view of {string}', (label) => {
+Then('I see the filter is no longer visible in the filter list', () => {
+  const element = cy.get(FilterPage.labels.FILTER_NAME);
+  element.should('not.exist');
+  cy.wait(2000);
+});
+
+And('I scroll into view of {string}', (label) => {
   cy.get(FilterPage.labels[label]).scrollIntoView();
 });
 
-Then('user verifies confirmation message is visible', () => {
+Then('I see a confirmation message on the deletion filter', () => {
   cy.get(FilterPage.messages['MODAL_MESSAGE']).should('be.visible');
 });
 
 
-Then('user sees all active filters:', dataTable => {
+Then('I see all active filters in the filter list with the correct options:', dataTable => {
   const expectedFilters = dataTable.hashes();
 
   expectedFilters.forEach((filter, index) => {

@@ -8,3 +8,4 @@ coverage/**/*
 reports/
 cypress.env.json
 mochawesome-report/**/*
+settings.json

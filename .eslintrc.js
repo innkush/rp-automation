@@ -25,6 +25,5 @@ module.exports = {
     'eol-last': 2,
     'no-multiple-empty-lines': ['error', { 'max': 8, 'maxEOF': 0 }],
     'quotes': ['error', 'single'],
-    '@stylistic/js/indent': ['error', 2],
   },
 };

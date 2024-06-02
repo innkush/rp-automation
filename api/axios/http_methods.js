@@ -9,7 +9,7 @@ import {
   GET_ALL_FILTER_NAMES,
 } from '../api_constants';
 const { RP_USERNAME: username, RP_PASSWORD: password, baseUrl } = config;
-import { logger } from '../logger';
+import { logger } from '../../logger';
 
 export async function getAuthToken() {
   try {

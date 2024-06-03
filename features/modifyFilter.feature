@@ -14,11 +14,11 @@ Feature: 'Modify  Filter'
     When I enter 'Demo Api' into the 'Enter name' input field
     And I enter '<filterNumber>' into the 'Enter quantity' input field
     Then I see <filteredLaunches> number of filtered launches
-    And  I click on the 'SAVE' button
+    When  I click on the 'SAVE' button
     And I enter 'New filter for bug type' into the 'Enter filter name' input field
     And I confirm the adding of a filter
     Then I see the 'FILTER_NAME' link contains the 'New filter for bug type' text
-    And I wait for an overlay element disappear
+    When I wait for an overlay element disappear
     And I logout RP
     Examples:
       | bugType              | filterNumber | filteredLaunches |

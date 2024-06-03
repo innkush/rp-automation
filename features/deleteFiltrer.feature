@@ -7,9 +7,9 @@ Feature: Delete Filter
         Then I see all active filters in the filter list with the correct options:
             | Filter name          | Options                                                           | Owner      |
             | New Filter To Delete | (Launch name contains New Filter To Delete) sorted by: Start time | superadmin |
-        And I enter 'New Filter To Delete' into the 'Search by name' input field
+        When I enter 'New Filter To Delete' into the 'Search by name' input field
         Then I see the filter 'New Filter To Delete' appears in the filter list
-        And I click on the 'DELETE' button
-        And I see a confirmation message on the deletion filter
-        But I confirm the deletion of a filter
-        And I see the filter is no longer visible in the filter list
+        When I click on the 'DELETE' button
+        Then I see a confirmation message on the deletion filter
+        When I confirm the deletion of a filter
+        Then I see the filter is no longer visible in the filter list

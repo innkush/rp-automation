@@ -70,7 +70,7 @@ When('I see {int} number of filtered launches', (expectedQuantities) => {
   expect(expectedQuantities).toBeGreaterThanOrEqual(2);
 });
 
-Then('I click on the more condition button', async () => {
+When('I click on the more condition button', async () => {
   const element = await FilterPage.getElement('button', 'MORE');
   element.click();
 });
@@ -202,13 +202,13 @@ Given('I login to RP', async () => {
   }
 });
 
-Then('I wait for an overlay element disappear', async () => {
+When('I wait for an overlay element disappear', async () => {
   const message = await HomePage.getElement('button', 'BOTTOM_NOTIFICATION');
   message.waitForDisplayed();
   message.waitForDisplayed({ reverse: true, timeout: 30000 });
 });
 
-Then('I logout RP', async () => {
+When('I logout RP', async () => {
   const sidebar = await HomePage.getElement('button', 'SIDE_BAR_BOTTOM');
   sidebar.click();
   const logout = await HomePage.getElement('button', 'LOGOUT');

@@ -372,7 +372,7 @@ exports.config = {
     const scenarioName = scenario.name;
     if (result.error) {
       const timestamp = new Date().toUTCString().replace(/[:.]/g, '-');
-      const filepath = `./screenshot/${scenarioName.replace(
+      const filepath = `./screenshots/${scenarioName.replace(
         / /g,
         '_'
       )}-${timestamp}.png`;

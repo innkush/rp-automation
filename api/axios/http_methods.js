@@ -21,6 +21,8 @@ import { logger } from '../logger';
 
 export async function getAuthToken() {
   try {
+
+    logger.info(baseUrl + AUTH_ENDPOINT);
     const tokenResponse = await axios.post(
       baseUrl + AUTH_ENDPOINT,
       `grant_type=password&username=${username}&password=${password}`,

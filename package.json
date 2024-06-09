@@ -8,7 +8,7 @@
     "cypress open": "set CYPRESS_headed=true && cypress open",
     "test:awesome": "mocha --reporter mochawesome",
     "api:test:mocha": "mocha --require @babel/register --recursive --grep '^api/api_tests/'",
-    "api:test:jest": "jest --testPathPattern='api/api_tests/'"
+    "api:test:jest": "jest --verbose --testPathPattern='api/api_tests/'"
   },
   "author": "",
   "license": "ISC",

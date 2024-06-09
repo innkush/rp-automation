@@ -7,4 +7,7 @@ module.exports = {
     'chai': '<rootDir>/__mocks__/chai.js',
   },
   testTimeout: 60000,
+  reporters: [
+      'default'
+    ]
 };

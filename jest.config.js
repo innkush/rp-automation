@@ -9,5 +9,6 @@ module.exports = {
   testTimeout: 60000,
   reporters: [
       'default'
-    ]
+    ],
+  setupFilesAfterEnv: ['./api/axios/setupHooks.js'] 
 };

@@ -1,6 +1,14 @@
 import supertest from 'supertest';
-import config from '../config.json';
-const { RP_USERNAME: username, RP_PASSWORD: password, baseUrl } = config;
+require('dotenv').config();
+
+const username = process.env.RP_USERNAME;
+const password = process.env.RP_PASSWORD;
+const baseUrl = process.env.BASE_URL;
+
+if (!username || !password || !baseUrl) {
+  throw new Error('ReportPortal credentials are not set in environment variables');
+}
+
 import {
   AUTH_ENDPOINT,
   FILTER_ENDPOINT,

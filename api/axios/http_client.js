@@ -9,6 +9,7 @@ class APIClient {
   async sendRequest(method, endpoint, data={}, headers = {}) {
     try {
       const url = this.baseUrl + endpoint;
+      logger.info(url);
       const response = await axios.request({
         method,
         url,

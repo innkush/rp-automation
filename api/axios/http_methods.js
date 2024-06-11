@@ -1,5 +1,4 @@
 import axios from 'axios';
-import config from '../config.json';
 import APIClient from './http_client';
 import { validateContentGetNames } from '../schemas';
 import {
@@ -8,11 +7,23 @@ import {
   FILTER_ENDPOINT,
   GET_ALL_FILTER_NAMES,
 } from '../api_constants';
-const { RP_USERNAME: username, RP_PASSWORD: password, baseUrl } = config;
+
 import { logger } from '../../logger';
+
+require('dotenv').config();
+
+const username = process.env.RP_USERNAME;
+const password = process.env.RP_PASSWORD;
+const baseUrl = process.env.BASE_URL;
+
+if (!username || !password || !baseUrl) {
+  throw new Error('ReportPortal credentials are not set in environment variables');
+}
 
 export async function getAuthToken() {
   try {
+
+    logger.info(baseUrl + AUTH_ENDPOINT);
     const tokenResponse = await axios.post(
       baseUrl + AUTH_ENDPOINT,
       `grant_type=password&username=${username}&password=${password}`,

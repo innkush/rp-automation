@@ -4,11 +4,16 @@ const path = require('path');
 const { browser } = require('@wdio/globals');
 const axios = require('axios');
 import { logger } from './logger';
+const  { Reporter } = require('@reportportal/agent-js-webdriverio')
+import { createIssuesFromResults } from './jiraCreateIssue';
+
 let token;
+let failedTests = [];
 
 const username = process.env.WDIO_USERNAME;
 const password = process.env.WDIO_PWD;
 const baseUrl = process.env.BASE_URL;
+const rpApiKey = process.env.RP_AI_KEY;
 const AUTH_ENDPOINT = '/uat/sso/oauth/token';
 
 function createDirectory(filePath) {
@@ -18,6 +23,17 @@ function createDirectory(filePath) {
   }
   fs.mkdirSync(dirname);
 }
+
+const rp_config = {
+  apiKey: rpApiKey,
+  endpoint: 'http://127.0.0.1:8080/api/v1',
+  project: 'superadmin_personal',
+  launch: 'Filter feature',
+  description: 'Report portal: filter feature tesing',
+  mode: 'DEFAULT',
+  seleniumCommandsLogLevel: 'info',
+  autoAttachScreenshot: false,
+};
 
 exports.config = {
   //
@@ -94,10 +110,10 @@ exports.config = {
   // - @wdio/sumologic-reporter
   // - @wdio/cli, @wdio/config, @wdio/utils
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevels: {
-    webdriver: 'silent',
-    '@wdio/local-runner': 'silent',
-  },
+  // logLevels: {
+  //   webdriver: 'debug',
+  //   '@wdio/local-runner': 'silent',
+  // },
   //
   // If you only want to run your tests until a specific amount of tests have failed use
   // bail (default is 0 - don't bail, run all tests).
@@ -148,7 +164,8 @@ exports.config = {
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: [
-    'spec'
+    'spec',
+    [Reporter, rp_config ]
   ],
 
   // If you are using Cucumber you need to specify the location of your step definitions.
@@ -248,7 +265,6 @@ exports.config = {
       );
       logger.info('TOKEN', tokenResponse.data.access_token);
 
-      token = tokenResponse.data.access_token;
 
       // generate test data
       const responseGenerate = await axios.post(
@@ -390,8 +406,17 @@ exports.config = {
    * @param {number}                 result.duration  duration of scenario in milliseconds
    * @param {object}                 context          Cucumber World object
    */
-  // afterScenario: function (world, result, context) {
-  // },
+  afterScenario: async function (world, result, context) {
+    if (!result.passed) {
+      failedTests.push({
+        title: world.pickle.name,
+        error: world.result.message,
+        status: world.result.status
+      });
+      logger.info('Failed Test:', JSON.stringify(failedTests));
+      await createIssuesFromResults(failedTests);
+    }
+  },
   /**
    *
    * Runs after a Cucumber Feature.

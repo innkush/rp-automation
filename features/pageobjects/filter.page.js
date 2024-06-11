@@ -1,6 +1,6 @@
 
 const WebElementPage = require('./webElementPage');
-const { $$} = require('@wdio/globals')
+const { $$,$} = require('@wdio/globals')
 
 class FilterPage extends WebElementPage {
   static buttons = {
@@ -83,6 +83,8 @@ class FilterPage extends WebElementPage {
     }
     if (multiple ) {
       return $$(selector);
+    } else {
+      return $(selector);
     }
   }
 }

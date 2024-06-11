@@ -8,7 +8,9 @@
     "cypress open": "set CYPRESS_headed=true && cypress open",
     "test:awesome": "mocha --reporter mochawesome",
     "api:test:mocha": "mocha --require @babel/register --recursive --grep '^api/api_tests/'",
-    "api:test:jest": "jest --verbose --testPathPattern='api/api_tests/'"
+    "api:test:jest": "jest --testPathPattern='api/api_tests/'",
+    "wdio": "wdio run ./wdio.conf.js",
+    "wdio:crossbrowser": "wdio run ./browser.stack.wdio.conf.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +22,11 @@
     "@cypress/code-coverage": "^3.12.30",
     "@cypress/grep": "^4.0.1",
     "@stylistic/eslint-plugin-js": "^1.7.2",
+    "@wdio/browserstack-service": "^8.38.0",
+    "@wdio/cli": "^8.38.0",
+    "@wdio/cucumber-framework": "^8.38.0",
+    "@wdio/local-runner": "^8.38.0",
+    "@wdio/spec-reporter": "^8.38.0",
     "babel-jest": "^29.7.0",
     "cypress": "^13.8.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
